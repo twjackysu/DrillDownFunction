@@ -1,13 +1,11 @@
 ﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
+using NLog;
+using NLog.Extensions.Logging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+[assembly: FunctionsStartup(typeof(DrilldownFunctions.Startup))]
 namespace DrilldownFunctions
 {
     public class Startup : FunctionsStartup
@@ -28,6 +26,16 @@ namespace DrilldownFunctions
             builder.Services.AddOptions();
             builder.Services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
 
+            LogManager.Setup().LoadConfigurationFromSection(configuration);
+            builder.Services.AddLogging((loggingBuilder) =>
+            {
+                var nlogOptions = new NLogProviderOptions()
+                {
+                    ShutdownOnDispose = true,
+                    RemoveLoggerFactoryFilter = true
+                };
+                loggingBuilder.AddNLog(nlogOptions);
+            });
         }
     }
 }
