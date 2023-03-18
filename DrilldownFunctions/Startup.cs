@@ -1,4 +1,6 @@
-﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using DrilldownFunctions.Common.Factory;
+using DrilldownFunctions.Functions.AzureCosmosDB;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NLog;
@@ -36,6 +38,10 @@ namespace DrilldownFunctions
                 };
                 loggingBuilder.AddNLog(nlogOptions);
             });
+
+            builder.Services.AddSingleton<AzureCosmosDBFactory>();
+            builder.Services.AddSingleton<IApiResponseFactory, ApiResponseFactory>();
+            builder.Services.AddSingleton<IResponseFactory, ResponseFactory>();
         }
     }
 }

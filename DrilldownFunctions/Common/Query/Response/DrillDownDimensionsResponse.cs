@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrilldownFunctions
+namespace DrilldownFunctions.Common.Query.Response
 {
-    public class AppSettings
+    public class DrillDownDimensionsResponse
     {
     }
 }
