@@ -7,7 +7,7 @@ namespace DrilldownFunctions.Common.Factory
     public abstract class SourceFactory
     {
         public abstract AbstractDrillDownDimensionsQuery CreateDimensionsQuery();
-        public abstract AbstractDrillDownDataQuery CreateDataQuery(DrillDownDataRequest dataRequest);
+        public abstract AbstractDrillDownSummarizeQuery CreateSummarizeQuery(DrillDownSummarizeRequest summarizeRequest);
         public abstract AbstractDrillDownDetailsQuery CreateDetailsQuery(DrillDownDetailsRequest detailsRequest);
     }
 }

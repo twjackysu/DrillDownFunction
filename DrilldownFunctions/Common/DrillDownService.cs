@@ -17,10 +17,10 @@ namespace DrilldownFunctions.Common
             var _abstractDimensionsQuery = _factory.CreateDimensionsQuery();
             return _abstractDimensionsQuery.ExecuteDrillDownDimensionsQuery();
         }
-        public DrillDownDataResponse ExecuteDataQuery(DrillDownDataRequest dataRequest)
+        public DrillDownSummarizeResponse ExecuteSummarizeQuery(DrillDownSummarizeRequest summarizeRequest)
         {
-            var _abstractDataQuery = _factory.CreateDataQuery(dataRequest);
-            return _abstractDataQuery.ExecuteDrillDownDataQuery();
+            var _abstractSummarizeQuery = _factory.CreateSummarizeQuery(summarizeRequest);
+            return _abstractSummarizeQuery.ExecuteDrillDownSummarizeQuery();
         }
         public DrillDownDetailsResponse ExecuteDetailsQuery(DrillDownDetailsRequest detailsRequest)
         {

@@ -6,7 +6,7 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB.Query
 {
     internal class AzureCosmosDBDrillDownDimensionsQuery : AbstractDrillDownDimensionsQuery
     {
-        private AppSettings _appSettings;
+        private readonly AppSettings _appSettings;
         public AzureCosmosDBDrillDownDimensionsQuery(AppSettings appSettings)
         {
             _appSettings = appSettings;

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace DrilldownFunctions.Common.Query.Response
 {
-    public class DrillDownDataResponse
+    public class DrillDownSummarizeResponse
     {
+        public Dictionary<string, string[]> DimensionValueSet { get; set; }
+        public List<Dictionary<string, string>> Data { get; set; }
     }
 }

@@ -33,10 +33,6 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB
             _AzureCosmosDBFactory = azureCosmosDBFactory;
         }
 
-        //[OpenApiOperation(operationId: "Run", tags: new[] { "name" })]
-        //[OpenApiSecurity("AzureCosmosDB_DrillDownData", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
-        //[OpenApiParameter(name: "name", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "The **Name** parameter")]
-        //[OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(string), Description = "The OK response")]
         [FunctionName("AzureCosmosDB_DrillDownDimensions")]
         public async Task<IActionResult> AzureCosmosDB_DrillDownDimensions(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
@@ -56,18 +52,18 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB
                 return _responseFactory.CreateOKResponse(ErrorCodes.InternalServerError);
             }
         }
-        [FunctionName("AzureCosmosDB_DrillDownData")]
-        public async Task<IActionResult> AzureCosmosDB_DrillDownData(
+        [FunctionName("AzureCosmosDB_DrillDownSummarize")]
+        public async Task<IActionResult> AzureCosmosDB_DrillDownSummarize(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req)
         {
-            _logger.LogInformation("AzureCosmosDB_DrillDownData");
+            _logger.LogInformation("AzureCosmosDB_DrillDownSummarize");
 
             try
             {
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-                var requestPayload = JsonConvert.DeserializeObject<DrillDownDataRequest>(requestBody);
+                var requestPayload = JsonConvert.DeserializeObject<DrillDownSummarizeRequest>(requestBody);
                 var drillDownService = new DrillDownService(_AzureCosmosDBFactory);
-                var queryResult = drillDownService.ExecuteDataQuery(requestPayload);
+                var queryResult = drillDownService.ExecuteSummarizeQuery(requestPayload);
 
                 return _responseFactory.CreateOKResponse(queryResult);
             }

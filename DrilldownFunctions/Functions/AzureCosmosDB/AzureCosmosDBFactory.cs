@@ -17,13 +17,13 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB
         {
             return new AzureCosmosDBDrillDownDimensionsQuery(_appSettings.CurrentValue);
         }
-        public override AbstractDrillDownDataQuery CreateDataQuery(DrillDownDataRequest dataRequest)
+        public override AbstractDrillDownSummarizeQuery CreateSummarizeQuery(DrillDownSummarizeRequest summarizeRequest)
         {
-            return new AzureCosmosDBDrillDownDataQuery(_appSettings.CurrentValue);
+            return new AzureCosmosDBDrillDownSummarizeQuery(_appSettings.CurrentValue, summarizeRequest);
         }
         public override AbstractDrillDownDetailsQuery CreateDetailsQuery(DrillDownDetailsRequest detailsRequest)
         {
-            return new AzureCosmosDBDrillDownDetailsQuery(_appSettings.CurrentValue);
+            return new AzureCosmosDBDrillDownDetailsQuery(_appSettings.CurrentValue, detailsRequest);
         }
     }
 }
