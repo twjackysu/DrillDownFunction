@@ -19,10 +19,10 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB.Query
         {
             var entityType = _dbContext.Model.FindEntityType(typeof(Data.Models.NationalIncome));
 
-            var list = new List<Dimension>();
+            var list = new List<DimensionsResponseDimension>();
             foreach (var property in entityType.GetProperties())
             {
-                list.Add(new Dimension()
+                list.Add(new DimensionsResponseDimension()
                 {
                     DimensionName = property.Name,
                     DimensionType = property.ClrType.Name

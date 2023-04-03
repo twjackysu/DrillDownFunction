@@ -19,6 +19,7 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB.Query
         }
         public override DrillDownDetailsResponse ExecuteDrillDownDetailsQuery()
         {
+
             throw new NotImplementedException();
         }
     }

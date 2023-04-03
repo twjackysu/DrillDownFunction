@@ -5,22 +5,22 @@ namespace DrilldownFunctions.Common.Query.Request
 {
     public class DrillDownSummarizeRequest
     {
-        public Filter Filter { get; set; }
-        public List<Dimension> Dimensions { get; set; }
-        public List<Measure> Measures { get; set; }
+        public SummarizeRequestFilter Filter { get; set; }
+        public List<SummarizeRequestDimension> Dimensions { get; set; }
+        public List<SummarizeRequestMeasure> Measures { get; set; }
     }
 
-    public class Filter
+    public class SummarizeRequestFilter
     {
-        public List<Dimension> Dimensions { get; set; }
+        public List<SummarizeRequestDimension> Dimensions { get; set; }
     }
 
-    public class Dimension
+    public class SummarizeRequestDimension
     {
         public string DimensionName { get; set; }
         public string[] FilterValues { get; set; }
     }
-    public class Measure
+    public class SummarizeRequestMeasure
     {
         public string DimensionName { get; set; }
         public SummarizeType Summarize { get; set; }

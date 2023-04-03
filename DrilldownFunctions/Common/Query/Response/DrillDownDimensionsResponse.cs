@@ -8,9 +8,9 @@ namespace DrilldownFunctions.Common.Query.Response
 {
     public class DrillDownDimensionsResponse
     {
-        public List<Dimension> Dimensions { get; set; }
+        public List<DimensionsResponseDimension> Dimensions { get; set; }
     }
-    public class Dimension
+    public class DimensionsResponseDimension
     {
         public string DimensionName { get; set; }
         public string DimensionType { get; set; }
