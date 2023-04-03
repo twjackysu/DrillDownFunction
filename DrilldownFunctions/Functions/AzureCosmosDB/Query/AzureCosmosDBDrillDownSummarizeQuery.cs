@@ -1,6 +1,7 @@
 ﻿using DrilldownFunctions.Common.Query;
 using DrilldownFunctions.Common.Query.Request;
 using DrilldownFunctions.Common.Query.Response;
+using DrilldownFunctions.Data;
 using System;
 
 namespace DrilldownFunctions.Functions.AzureCosmosDB.Query
@@ -9,10 +10,12 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB.Query
     {
         private readonly AppSettings _appSettings;
         private readonly DrillDownSummarizeRequest _summarizeRequest;
-        public AzureCosmosDBDrillDownSummarizeQuery(AppSettings appSettings, DrillDownSummarizeRequest summarizeRequest)
+        private readonly DrilldownDbContext _dbContext;
+        public AzureCosmosDBDrillDownSummarizeQuery(AppSettings appSettings, DrilldownDbContext dbContext, DrillDownSummarizeRequest summarizeRequest)
         {
             _appSettings = appSettings;
             _summarizeRequest = summarizeRequest;
+            _dbContext = dbContext;
         }
         public override DrillDownSummarizeResponse ExecuteDrillDownSummarizeQuery()
         {

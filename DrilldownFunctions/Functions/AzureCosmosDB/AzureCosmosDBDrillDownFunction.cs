@@ -6,12 +6,14 @@ using DrilldownFunctions.Common;
 using DrilldownFunctions.Common.Error;
 using DrilldownFunctions.Common.Factory;
 using DrilldownFunctions.Common.Query.Request;
+using DrilldownFunctions.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
@@ -25,12 +27,15 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB
         private readonly IOptionsMonitor<AppSettings> _appSetting;
         private readonly AzureCosmosDBFactory _AzureCosmosDBFactory;
         private readonly IResponseFactory _responseFactory;
+        private readonly DrilldownDbContext _dbContext;
 
-        public AzureCosmosDBDrillDownFunction(ILogger<AzureCosmosDBDrillDownFunction> log, IResponseFactory responseFactory, AzureCosmosDBFactory azureCosmosDBFactory)
+        public AzureCosmosDBDrillDownFunction(ILogger<AzureCosmosDBDrillDownFunction> log, 
+            IResponseFactory responseFactory, AzureCosmosDBFactory azureCosmosDBFactory, DrilldownDbContext dbContext)
         {
             _logger = log;
             _responseFactory = responseFactory;
             _AzureCosmosDBFactory = azureCosmosDBFactory;
+            _dbContext = dbContext;
         }
 
         [FunctionName("AzureCosmosDB_DrillDownDimensions")]

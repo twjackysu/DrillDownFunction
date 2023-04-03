@@ -1,6 +1,8 @@
 ﻿using DrilldownFunctions.Common.Factory;
+using DrilldownFunctions.Data;
 using DrilldownFunctions.Functions.AzureCosmosDB;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NLog;
@@ -27,6 +29,11 @@ namespace DrilldownFunctions
 
             builder.Services.AddOptions();
             builder.Services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
+
+            builder.Services.AddDbContext<DrilldownDbContext>(
+                options => options.UseCosmos(
+                    configuration.GetConnectionString("CosmosDb"),
+                    configuration.GetValue<string>("CosmosDb:DatabaseName")));
 
             LogManager.Setup().LoadConfigurationFromSection(configuration);
             builder.Services.AddLogging((loggingBuilder) =>
