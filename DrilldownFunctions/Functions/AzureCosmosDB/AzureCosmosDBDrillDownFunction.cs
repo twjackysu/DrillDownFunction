@@ -39,7 +39,7 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB
         }
 
         [FunctionName("AzureCosmosDB_DrillDownDimensions")]
-        public async Task<IActionResult> AzureCosmosDB_DrillDownDimensions(
+        public IActionResult AzureCosmosDB_DrillDownDimensions(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
         {
             _logger.LogInformation("AzureCosmosDB_DrillDownDimensions");

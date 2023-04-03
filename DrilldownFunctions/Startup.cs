@@ -33,7 +33,7 @@ namespace DrilldownFunctions
             builder.Services.AddDbContext<DrilldownDbContext>(
                 options => options.UseCosmos(
                     configuration.GetConnectionString("CosmosDb"),
-                    configuration.GetValue<string>("CosmosDb:DatabaseName")));
+                    configuration.GetValue<string>("CosmosDb:DatabaseName")), ServiceLifetime.Singleton, ServiceLifetime.Singleton);
 
             LogManager.Setup().LoadConfigurationFromSection(configuration);
             builder.Services.AddLogging((loggingBuilder) =>
