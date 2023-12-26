@@ -12,19 +12,19 @@ namespace DrilldownFunctions.Common
         {
             _factory = factory;
         }
-        public DrillDownDimensionsResponse ExecuteDimensionsQuery()
+        public DrillDownFieldsResponse ExecuteFieldsQuery(DrillDownFieldsRequest request)
         {
-            var _abstractDimensionsQuery = _factory.CreateDimensionsQuery();
-            return _abstractDimensionsQuery.ExecuteDrillDownDimensionsQuery();
+            var _abstractFieldsQuery = _factory.CreateFieldsQuery(request);
+            return _abstractFieldsQuery.ExecuteDrillDownFieldsQuery();
         }
-        public DrillDownSummarizeResponse ExecuteSummarizeQuery(DrillDownSummarizeRequest summarizeRequest)
+        public DrillDownSummarizeResponse ExecuteSummarizeQuery(DrillDownSummarizeRequest request)
         {
-            var _abstractSummarizeQuery = _factory.CreateSummarizeQuery(summarizeRequest);
+            var _abstractSummarizeQuery = _factory.CreateSummarizeQuery(request);
             return _abstractSummarizeQuery.ExecuteDrillDownSummarizeQuery();
         }
-        public DrillDownDetailsResponse ExecuteDetailsQuery(DrillDownDetailsRequest detailsRequest)
+        public DrillDownDetailsResponse ExecuteDetailsQuery(DrillDownDetailsRequest request)
         {
-            var _abstractDetailsQuery = _factory.CreateDetailsQuery(detailsRequest);
+            var _abstractDetailsQuery = _factory.CreateDetailsQuery(request);
             return _abstractDetailsQuery.ExecuteDrillDownDetailsQuery();
         }
     }

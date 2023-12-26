@@ -1,7 +1,3 @@
-using System;
-using System.IO;
-using System.Net;
-using System.Threading.Tasks;
 using DrilldownFunctions.Common;
 using DrilldownFunctions.Common.Error;
 using DrilldownFunctions.Common.Factory;
@@ -11,13 +7,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace DrilldownFunctions.Functions.AzureCosmosDB
 {
@@ -46,8 +41,10 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB
 
             try
             {
+                string requestBody = new StreamReader(req.Body).ReadToEnd();
+                var requestPayload = JsonConvert.DeserializeObject<DrillDownFieldsRequest>(requestBody);
                 var drillDownService = new DrillDownService(_AzureCosmosDBFactory);
-                var queryResult = drillDownService.ExecuteDimensionsQuery();
+                var queryResult = drillDownService.ExecuteFieldsQuery(requestPayload);
 
                 return _responseFactory.CreateOKResponse(queryResult);
             }

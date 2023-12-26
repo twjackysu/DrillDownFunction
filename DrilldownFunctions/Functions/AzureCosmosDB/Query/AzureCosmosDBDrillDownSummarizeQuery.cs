@@ -9,12 +9,12 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB.Query
     internal class AzureCosmosDBDrillDownSummarizeQuery: AbstractDrillDownSummarizeQuery
     {
         private readonly AppSettings _appSettings;
-        private readonly DrillDownSummarizeRequest _summarizeRequest;
+        private readonly DrillDownSummarizeRequest _request;
         private readonly DrilldownDbContext _dbContext;
-        public AzureCosmosDBDrillDownSummarizeQuery(AppSettings appSettings, DrilldownDbContext dbContext, DrillDownSummarizeRequest summarizeRequest)
+        public AzureCosmosDBDrillDownSummarizeQuery(AppSettings appSettings, DrilldownDbContext dbContext, DrillDownSummarizeRequest request)
         {
             _appSettings = appSettings;
-            _summarizeRequest = summarizeRequest;
+            _request = request;
             _dbContext = dbContext;
         }
         public override DrillDownSummarizeResponse ExecuteDrillDownSummarizeQuery()

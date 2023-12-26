@@ -1,5 +1,5 @@
 ﻿
-using DrilldownFunctions.Common.DTOs.Dimensions;
+using DrilldownFunctions.Common.DTOs.Field;
 using System.Collections.Generic;
 
 namespace DrilldownFunctions.Common.Query.Request
