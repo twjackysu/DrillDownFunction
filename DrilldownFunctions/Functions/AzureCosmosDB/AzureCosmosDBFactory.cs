@@ -16,9 +16,9 @@ namespace DrilldownFunctions.Functions.AzureCosmosDB
             _appSettings = appSettings;
             _dbContext = dbContext;
         }
-        public override AbstractDrillDownFieldsQuery CreateFieldsQuery()
+        public override AbstractDrillDownFieldsQuery CreateFieldsQuery(DrillDownFieldsRequest fieldsRequest)
         {
-            return new AzureCosmosDBDrillDownDimensionsQuery(_appSettings.CurrentValue, _dbContext);
+            return new AzureCosmosDBDrillDownDimensionsQuery(_appSettings.CurrentValue, _dbContext, fieldsRequest);
         }
         public override AbstractDrillDownSummarizeQuery CreateSummarizeQuery(DrillDownSummarizeRequest summarizeRequest)
         {
